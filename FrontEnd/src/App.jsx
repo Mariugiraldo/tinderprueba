@@ -1,13 +1,12 @@
-import { useState } from 'react'
-import './css/App.css'
 
 function App() {
 
   return (
     <>
-      <div>
+    {/* SOLO PROVE SI YA FUNCIONABA TAILWIND*/}
+      <h2 className='text-red-900'>
         hola
-      </div>
+      </h2>
     </>
   )
 }
