@@ -1,14 +1,21 @@
 
-function App() {
+import React from 'react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { requireAuth } from './components/utils/Auth'; // Asegúrate de ajustar la ruta según tu estructura de archivos
 
+// const ProtectedHome = requireAuth(Home);
+
+function App() {
   return (
-    <>
-    {/* SOLO PROVE SI YA FUNCIONABA TAILWIND*/}
-      <h2 className='text-red-900'>
-        hola
-      </h2>
-    </>
-  )
+    <BrowserRouter>
+      <Routes>
+        { /**
+         * <Route path="/" element={<Login />} />
+          <Route path="/home" element={<ProtectedHome />} />
+         * */ }
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
-export default App
+export default App;
