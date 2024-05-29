@@ -18,17 +18,18 @@ public class PetService {
         if (pet == null) {
             throw new ResourceNotFoundException("Pet object cannot be null");
         }
-        if(pet.getName()== null || pet.getName().isEmpty()){
+        String name = pet.getNombre();
+        if(name == null || name.isEmpty()){
             throw new ResourceNotFoundException("Pet name required");
         }
-        if(nameAlreadyInUse(pet.getName())){
+        if(nameAlreadyInUse(name)){
             throw new ResourceAlreadyExistExeption("A Pet with that name already exists in the database");
         }
 
         return iPetRepository.save(pet);
     }
 
-    public Pet getPetById(Integer id) throws ResourceNotFoundException {
+    public Pet getPetById(Long id) throws ResourceNotFoundException {
         Pet pet = iPetRepository.findById(id).orElse(null);
         if (pet == null) {
             throw new ResourceNotFoundException("Pet not found with id: " + id);
@@ -38,7 +39,7 @@ public class PetService {
     }
 
     public Pet getPetByName(String name) throws ResourceNotFoundException{
-       Pet pet = iPetRepository.findByName(name).orElse(null);
+       Pet pet = iPetRepository.findByNombre(name).orElse(null);
         if (pet== null) {
             throw new ResourceNotFoundException("Pet not found with id: " + name);
         }
@@ -49,27 +50,26 @@ public class PetService {
         return  iPetRepository.findAll();
     }
     private boolean nameAlreadyInUse(String name){
-        return iPetRepository.findByName(name).isPresent();
+        return iPetRepository.findByNombre(name).isPresent();
     }
 
     public Pet updatePet(Pet pet) throws ResourceNotFoundException {
         Pet existingPet = iPetRepository.findById(pet.getId()).orElse(null);
         if (existingPet != null) {
-            existingPet.setName(pet.getName());
-            existingPet.setAge(pet.getAge());
-            existingPet.setRace(pet.getRace());
-            existingPet.setGender(pet.getGender());
-            existingPet.setSize(pet.getSize());
-            existingPet.setSpecies(pet.getSpecies());
-            existingPet.setDescription(pet.getDescription());
-            existingPet.setDate(pet.getDate());
+            existingPet.setNombre(pet.getNombre());
+            existingPet.setEdad(pet.getEdad());
+            existingPet.setRaza(pet.getRaza());
+            existingPet.setGenero(pet.getGenero());
+            existingPet.setTamanio(pet.getTamanio());
+            existingPet.setEspecie(pet.getEspecie());
+            existingPet.setDescripcion(pet.getDescripcion());
             return iPetRepository.save(existingPet);
         } else {
             throw new ResourceNotFoundException("Pet with ID " + pet.getId() + " not found");
         }
     }
 
-    public void deletePet(Integer id) {
+    public void deletePet(Long id) {
         iPetRepository.deleteById(id);
     }
 }

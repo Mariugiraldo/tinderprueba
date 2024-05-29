@@ -23,7 +23,7 @@ public class PetController {
     }
 
     @GetMapping("/{id}")
-    public Pet getPetById(@PathVariable Integer id) throws ResourceNotFoundException {
+    public Pet getPetById(@PathVariable Long id) throws ResourceNotFoundException {
         return petService.getPetById(id);
     }
 
@@ -43,10 +43,7 @@ public class PetController {
     }
 
     @DeleteMapping("/{id}")
-    public void deletePet(@PathVariable Integer id) {
+    public void deletePet(@PathVariable Long id) {
         petService.deletePet(id);
     }
-
-
-
 }
