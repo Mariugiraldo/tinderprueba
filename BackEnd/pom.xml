@@ -11,8 +11,8 @@
 	<groupId>com.desarrollo.adopcion</groupId>
 	<artifactId>NoCountryAdopcion</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>NoCountryAdopcion</name>
-	<description>Desarrollo de web para adopcion de mascotas en Spring Boot &amp; React</description>
+	<name>Zoocial</name>
+	<description> Tinder de mascotas</description>
 	<properties>
 		<java.version>17</java.version>
 	</properties>

@@ -1,10 +1,10 @@
 package com.desarrollo.adopcion.service;
-
 import com.desarrollo.adopcion.exceptions.ResourceAlreadyExistExeption;
+import com.desarrollo.adopcion.exceptions.ResourceNotFoundException;
 import com.desarrollo.adopcion.modelo.Pet;
 import com.desarrollo.adopcion.repository.IPetRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.rest.webmvc.ResourceNotFoundException;
+//import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -52,7 +52,7 @@ public class PetService {
         return iPetRepository.findByName(name).isPresent();
     }
 
-    public Pet updatePet(Pet pet) {
+    public Pet updatePet(Pet pet) throws ResourceNotFoundException {
         Pet existingPet = iPetRepository.findById(pet.getId()).orElse(null);
         if (existingPet != null) {
             existingPet.setName(pet.getName());
@@ -65,7 +65,7 @@ public class PetService {
             existingPet.setDate(pet.getDate());
             return iPetRepository.save(existingPet);
         } else {
-            throw new ResourceNotFoundException("Recipe with ID " + pet.getId() + " not found");
+            throw new ResourceNotFoundException("Pet with ID " + pet.getId() + " not found");
         }
     }
 

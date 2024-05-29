@@ -10,6 +10,6 @@ import java.util.Optional;
 @Repository
 public interface IPetRepository extends JpaRepository<Pet, Integer> {
 
-    @Query("SELECT r FROM Recipe r WHERE r.name = ?1")
+    @Query("SELECT r FROM Pet r WHERE r.name = ?1")
     Optional<Pet> findByName(String name);
 }

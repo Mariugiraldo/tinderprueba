@@ -17,13 +17,14 @@ public class Pet {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
-    private Integer age;
+    private String age;
     private String species;
     private String gender;
     private String race;
     private String size;
     private String Date;
     private String  description;
+    private String urlImg;
 
 }
 

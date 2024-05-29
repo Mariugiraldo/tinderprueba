@@ -1,10 +1,12 @@
 package com.desarrollo.adopcion.controller;
 
 import com.desarrollo.adopcion.exceptions.ResourceAlreadyExistExeption;
+import com.desarrollo.adopcion.exceptions.ResourceNotFoundException;
 import com.desarrollo.adopcion.modelo.Pet;
+import com.desarrollo.adopcion.repository.IPetRepository;
 import com.desarrollo.adopcion.service.PetService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.rest.webmvc.ResourceNotFoundException;
+//import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -30,6 +32,11 @@ public class PetController {
         return petService.getAllPets();
     }
 
+    @GetMapping("/{name}")
+    public Pet getPetByName(@PathVariable String name) throws ResourceNotFoundException {
+        return petService.getPetByName(name);
+    }
+
     @PutMapping
     public Pet updatePet(@RequestBody Pet pet) throws ResourceNotFoundException {
         return petService.updatePet(pet);
@@ -40,5 +47,7 @@ public class PetController {
     public void deletePet(@PathVariable Integer id) {
         petService.deletePet(id);
     }
+
+
 
 }
