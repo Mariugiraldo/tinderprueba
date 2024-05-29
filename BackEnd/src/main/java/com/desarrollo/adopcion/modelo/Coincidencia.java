@@ -20,42 +20,26 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
-public class Pet {
-
+@AllArgsConstructor
+public class Coincidencia {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-
+	
 	@ManyToOne
-	@JoinColumn(name="user_id")
-	private User user;
-
-	private String nombre;
-
-	private String especie;
-
-	private String raza;
-
-	private int edad;
-
-	private String genero;
-
-	private String tamanio;
-
-	private String descripcion;
-
+	@JoinColumn(name = "pet1_id")
+	private Pet pet1;
+	
+	@ManyToOne
+	@JoinColumn(name = "pet2_id")
+	private Pet pet2;
+	
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date creadoEn;
-
-	@OneToMany(mappedBy = "pet", cascade = CascadeType.ALL, orphanRemoval = true)
-	private List<PetPhotos> photos;
-
-	@OneToMany(mappedBy = "pet1", cascade = CascadeType.ALL, orphanRemoval = true)
-	private List<Coincidencia> match1;
-
-	@OneToMany(mappedBy = "pet2", cascade = CascadeType.ALL, orphanRemoval = true)
-	private List<Coincidencia> match2;
+	private Date fecha_match;
+	
+	@OneToMany(mappedBy = "match", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<Message> messages;
 
 }
