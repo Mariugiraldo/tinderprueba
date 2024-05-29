@@ -28,13 +28,12 @@ public class PetController {
     }
 
     @GetMapping
-    public List<Pet> getAllPets() {
-        return petService.getAllPets();
-    }
-
-    @GetMapping("/{name}")
-    public Pet getPetByName(@PathVariable String name) throws ResourceNotFoundException {
-        return petService.getPetByName(name);
+    public List<Pet> getAllPets(@RequestParam(required = false) String name) throws ResourceNotFoundException {
+        if(name == null || name.isBlank()) {
+            return petService.getAllPets();
+        } else {
+            return List.of(petService.getPetByName(name));
+        }
     }
 
     @PutMapping
